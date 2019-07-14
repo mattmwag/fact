@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Take a Fact. Leave a Fact.
                 </div>
 
                 <div class="links">

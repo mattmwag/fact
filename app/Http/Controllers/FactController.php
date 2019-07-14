@@ -8,6 +8,6 @@ class FactController extends Controller
 {
     public function hello()
     {
-	return "Hello!";
+	return view('welcome');
     }
 }
