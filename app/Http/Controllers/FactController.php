@@ -2,12 +2,34 @@
 
 namespace App\Http\Controllers;
 
+use App\Fact;
 use Illuminate\Http\Request;
 
 class FactController extends Controller
 {
     public function hello()
     {
-	return view('welcome');
+	    return view('welcome');
+    }
+    
+    public function index()
+    {
+        $facts = Fact::all();
+    
+        return view('facts.index', compact('facts'));
+    }
+    
+    public function show(Fact $fact)
+    {
+        return view('facts.show', compact('fact'));
+    }
+    
+    public function store()
+    {
+        $attributes = request()->validate(['text' => 'required']);
+        
+        Fact::create($attributes);
+        
+        return redirect('/facts');
     }
 }
