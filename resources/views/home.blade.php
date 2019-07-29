@@ -15,6 +15,11 @@
                     @endif
 
                     You are logged in!
+
+                    <form name="add_a_fact" method="POST" action="/facts">
+                        <textarea name="text"></textarea><br/>
+                        <button type="submit">Add A Fact</button>
+                    </form>
                 </div>
             </div>
         </div>
