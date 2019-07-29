@@ -7,6 +7,9 @@ use Faker\Generator as Faker;
 
 $factory->define(Fact::class, function (Faker $faker) {
     return [
-        'text' => $faker->realText()
+        'text' => $faker->realText(),
+        'owner_id' => function () {
+            return factory(App\User::class)->create()->id;
+        }
     ];
 });

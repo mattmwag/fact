@@ -85,9 +85,11 @@
                 </div>
 
                 <ul>
-                    @foreach ($facts as $fact)
+                    @forelse ($facts as $fact)
                         <a href="{{ $fact->path() }}"><li>{{ $fact->text }}</li></a>
-                    @endforeach
+                    @empty
+                        <li>No facts yet.</li>
+                    @endforelse
                 </ul>
 
                 <div class="links">

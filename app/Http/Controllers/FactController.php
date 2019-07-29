@@ -26,9 +26,11 @@ class FactController extends Controller
     
     public function store()
     {
-        $attributes = request()->validate(['text' => 'required']);
+        $attributes = request()->validate([
+            'text' => 'required',
+        ]);
         
-        Fact::create($attributes);
+        auth()->user()->facts()->create($attributes);
         
         return redirect('/facts');
     }

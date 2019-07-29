@@ -19,4 +19,8 @@
     
     Route::get('/facts/{fact}', 'FactController@show');
     
-    Route::post('/facts', 'FactController@store');
+    Route::post('/facts', 'FactController@store')->middleware('auth');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

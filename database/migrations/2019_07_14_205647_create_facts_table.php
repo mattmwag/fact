@@ -15,8 +15,11 @@ class CreateFactsTable extends Migration
     {
         Schema::create('facts', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedInteger('owner_id');
             $table->text('text');
             $table->timestamps();
+            
+            $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

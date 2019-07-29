@@ -16,9 +16,9 @@ class FactsTest extends TestCase
     {
         $this->withoutExceptionHandling();
         
-        $attributes = [
-            'text' => $this->faker->realText,
-        ];
+        $this->actingAs(factory('App\User')->create());
+        
+        $attributes = factory('App\Fact')->raw(['owner_id' => auth()->id()]);
         
         $this->post('/facts', $attributes)->assertRedirect('/facts');
         
@@ -30,15 +30,25 @@ class FactsTest extends TestCase
     /** @test */
     public function a_fact_requires_text()
     {
+        $this->actingAs(factory('App\User')->create());
+        
         $attributes = factory('App\Fact')->raw(['text' => '']);
     
         $this->post('/facts', $attributes)->assertSessionHasErrors('text');
     }
     
     /** @test */
+    public function only_authenticated_users_can_add_facts()
+    {
+        $attributes = factory('App\Fact')->raw();
+        
+        $this->post('/facts', $attributes)->assertRedirect('login');
+    }
+    
+    /** @test */
     public function a_user_can_view_a_fact()
     {
-        $this->withoutExceptionHandling();
+        //$this->withoutExceptionHandling();
     
         $fact = factory('App\Fact')->create();
         
