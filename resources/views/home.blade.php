@@ -17,6 +17,7 @@
                     You are logged in!
 
                     <form name="add_a_fact" method="POST" action="/facts">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                         <textarea name="text"></textarea><br/>
                         <button type="submit">Add A Fact</button>
                     </form>
